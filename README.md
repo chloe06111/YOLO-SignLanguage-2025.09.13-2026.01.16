@@ -1,5 +1,18 @@
 # SignPlay — 실시간 수어 인식 교육 게임
 
+## 게임 직접 실행하기 (Windows x64)
+
+**[▶ Windows 체험판 ZIP 한 번에 다운로드](https://github.com/chloe06111/YOLO-SignLanguage-2025.09.13-2026.01.16/releases/download/v2026.10.26/SignPlay-Windows-x64.zip)** · [배포 페이지와 검증 결과](https://github.com/chloe06111/YOLO-SignLanguage-2025.09.13-2026.01.16/releases/tag/v2026.10.26)
+
+1. 위 ZIP을 다운로드하고 **압축을 모두 풉니다**.
+2. 압축을 푼 폴더에서 **`SignPlay.exe`**를 실행합니다.
+3. 인식 서버가 준비될 때까지 기다린 뒤 웹캠을 연결해 퀴즈를 체험합니다.
+
+Python·Unity Editor·Git을 따로 설치할 필요가 없습니다. 게임과 인식 서버·모델·필요 라이브러리가 포함돼 있습니다. `SignPlay.exe`만 따로 옮기지 마세요. **GitHub의 `Code → Download ZIP` 대신 위 체험판 ZIP을 사용하세요.** 웹브라우저에서 바로 실행되는 게임은 아닙니다.
+
+모델 2개 예측, MediaPipe 초기화, TCP 이미지 수신·재연결, Unity 시작 종료 및 ZIP 무결성을 확인했습니다. 별도 PC의 전체 플레이 및 실제 손동작 인식은 아직 검증하지 않았습니다. [상세 검증 범위](tools/release/BUILD-VALIDATION.json)
+
+
 웹캠으로 입력한 손동작을 인식해 글자 단위로 퀴즈를 풀어가는 Unity 팀 프로젝트입니다. 이 저장소는 기존 Windows 실행 배포본과 개발 원본, 기획 자료, 학습 기록을 함께 보관합니다.
 
 | 구분 | 내용 |
@@ -42,4 +55,4 @@
 - [출처·팀 기여·외부 에셋 안내](docs/ATTRIBUTION.md)
 - [제외 항목과 백업 범위](docs/ARCHIVE.md)
 
-실행하려면 Git LFS를 포함해 저장소를 내려받은 뒤 Windows에서 기존 `SignPlay.exe`를 실행합니다. 개발 원본은 Unity Hub에서 `source/unity/SignPlay`를 열면 됩니다. 웹캠과 Unity/Python 실제 연동 실행은 이번 아카이브 작업에서 검증하지 않았습니다.
+체험은 위 Windows 체험판 ZIP을 이용하세요. 개발 원본은 Unity Hub에서 `source/unity/SignPlay`를 열면 됩니다. 루트의 인식 서버 실행파일은 누락된 Git LFS 객체를 대체하기 위해 보관된 코드와 모델로 다시 빌드했습니다. 직접 저장소를 복제하는 개발자는 Git LFS가 필요합니다. [배포본 빌드 방법](tools/release/README.md)

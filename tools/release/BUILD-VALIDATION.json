@@ -1,0 +1,32 @@
+{
+  "frozen_self_test": {
+    "mnts.joblib": {
+      "features": 63,
+      "prediction_count": 1
+    },
+    "model.joblib": {
+      "features": 63,
+      "prediction_count": 1
+    },
+    "mediapipe_blank_frame": true,
+    "opencv": "4.11.0",
+    "passed": true
+  },
+  "tcp_jpeg_and_reconnect": "passed",
+  "unity_running_at_start_scene": true,
+  "unity_log_created": true,
+  "unity_errors": [],
+  "headless_shader_warnings_expected": 7,
+  "limitations": [
+    "No clean separate PC tested",
+    "No physical webcam or end-to-end gameplay tested",
+    "No GPU rendering or graceful in-game exit tested; headless process stopped by test",
+    "Existing Unity build reused; recognition server rebuilt"
+  ],
+  "zip_crc": "passed",
+  "zip_bytes": 309395845,
+  "zip_sha256": "f8d1dfc41103dd49031cd46b39637c4860c6f95db0b5aec229d6b6c60f673c9d",
+  "archived_source_commit": "991c70ff631cdffa213a1a4c53466bb394f884e7",
+  "game_build": "Existing Unity build; not recompiled",
+  "recognition_build": "PyInstaller 6.16.0 / Python 3.10 / NumPy 1.26.4"
+}
