@@ -1,0 +1,27 @@
+# Unity generated content (keep Assets and .meta files)
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Ll]ogs/
+[Uu]ser[Ss]ettings/
+[Bb]uilds/
+.plastic/
+.vs/
+.vscode/
+.idea/
+*.csproj
+*.sln
+UpgradeLog*.htm
+# Python and local secrets
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.env
+.env.*
+*.pem
+*.pfx
+# OS metadata
+.DS_Store
+desktop.ini
+__MACOSX/

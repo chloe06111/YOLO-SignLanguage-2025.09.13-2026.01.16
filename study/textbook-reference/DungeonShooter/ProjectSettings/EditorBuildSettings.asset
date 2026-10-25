@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Title.unity
+    guid: 2db90d1e7716948408d64577fd552fd4
+  - enabled: 1
+    path: Assets/Scenes/WorldMap.unity
+    guid: 35320a63d290e414f82181954c40000b
+  - enabled: 1
+    path: Assets/Scenes/WorldMap1.unity
+    guid: 032c89c2c3d554171be53488a4ddfd7b
+  - enabled: 1
+    path: Assets/Scenes/dungeon1.unity
+    guid: 03cb32b939b8848e3a826f2d17b3ca4b
+  - enabled: 1
+    path: Assets/Scenes/dungeon2.unity
+    guid: 284599826d5484c75aa70b4b43a6d118
+  - enabled: 1
+    path: Assets/Scenes/dungeon3.unity
+    guid: 81f4771400d4842cb9fb68fefdef366e
+  - enabled: 1
+    path: Assets/Scenes/dungeon4.unity
+    guid: 3cb2ea63935a64ec989d9ec0a46ccc06
+  - enabled: 1
+    path: Assets/Scenes/dungeon5.unity
+    guid: ef1a505a353ae4fa59b5d4a79f76ddaf
+  - enabled: 1
+    path: Assets/Scenes/dungeon6.unity
+    guid: df6ade6406deb45e6a58ab97e4aa9577
+  - enabled: 1
+    path: Assets/Scenes/dungeon7.unity
+    guid: 0cfd2215e3c66459c914ba2e109fc2df
+  - enabled: 1
+    path: Assets/Scenes/BossStage.unity
+    guid: 41258aedb7e174aca92f33dc50494b30
+  m_configObjects: {}

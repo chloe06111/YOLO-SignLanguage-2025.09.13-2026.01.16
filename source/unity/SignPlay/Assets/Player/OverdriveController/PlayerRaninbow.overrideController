@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: PlayerRaninbow
+  m_Controller: {fileID: 9100000, guid: 7449a1aafe1b29247ad702d8d934b885, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: a4bdf07843582c549a01fb92263b6729, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 4e1a00a8e2247614ca4614c67fdcc83d, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: b64d856d3d320444f819c0bb7dc5602b, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 5176d44c67a74bc4fb886cdbb2e7051c, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 21c505875a2206848be9794bdb2c88ef, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 17e77eb36d8a9c14dba6b5cf9d0e4f60, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: cfa6b433e1b37f74b9c9f3d8f5caf3b1, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: adb65a03fc294034bbadce2cd9bdb3fe, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: d61cdd3ccecd21740825da57fff8b9c4, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 99f0f3a7a6b7e3e40ab71ba398fe14a2, type: 2}

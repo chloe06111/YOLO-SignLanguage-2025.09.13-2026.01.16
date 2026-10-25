@@ -1,172 +1,45 @@
-# YOLO
+# SignPlay — 실시간 수어 인식 교육 게임
 
+웹캠으로 입력한 손동작을 인식해 글자 단위로 퀴즈를 풀어가는 Unity 팀 프로젝트입니다. 이 저장소는 기존 Windows 실행 배포본과 개발 원본, 기획 자료, 학습 기록을 함께 보관합니다.
 
+| 구분 | 내용 |
+| --- | --- |
+| 프로젝트 | Team YOLO · 언톡 / SignPlay |
+| 개발 기간 | 2025.09.13–2026.01.16 (기존 저장소명 기준) |
+| 개발 환경 | Unity 2022.3.62f1 · C# · Python · MediaPipe · scikit-learn · Joblib |
+| 본인 담당 | **퀴즈 씬 전체 구현 및 기존 수어 인식 모델 연동** |
 
-================================================================
+## 본인 기여
 
-SignPlay: 수어 교육용 기능성 게임 (Sign Language Education Game)
+팀원이 만든 인식 모델(`model.joblib`, `mnts.joblib`)을 받아 Unity 퀴즈 흐름에 연결하고, 퀴즈 씬의 기능을 구현했습니다. **모델 자체의 학습·제작은 팀원 기여**입니다. 역할 구분은 저장소 소유자의 설명을 기준으로 정리했으며, 학습용 파일이나 팀 전체 코드를 개인 단독 성과로 표기하지 않습니다.
 
-================================================================
+| 구현 내용 | 확인할 코드 |
+| --- | --- |
+| 인식 결과를 퀴즈 정답 처리와 연결 | [UnityCameraSender.cs](source/unity/SignPlay/Assets/scripts/Quiz/UnityCameraSender.cs), [UdpReceiver.cs](source/unity/SignPlay/Assets/scripts/Quiz/UdpReceiver.cs), [Python 서버](source/python/unity_stream_server.py) |
+| 맞힌 글자를 회색으로 표시하고 다음 글자·문제로 진행 | [QuizCore.cs](source/unity/SignPlay/Assets/scripts/Quiz/QuizRecognize/QuizCore.cs) |
+| 퀴즈 진행 상태와 결과 관리 | [QuizGameManager.cs](source/unity/SignPlay/Assets/scripts/Quiz/QuizRecognize/QuizGameManager.cs), [QuizUI.cs](source/unity/SignPlay/Assets/scripts/Quiz/QuizRecognize/QuizUI.cs) |
+| 퀴즈 이미지·배경 및 결과 이미지 전환 | [QuizBackgroundSwitcher.cs](source/unity/SignPlay/Assets/scripts/Quiz/QuizBackgroundSwitcher.cs), [QuizEndingImageSwitcher.cs](source/unity/SignPlay/Assets/scripts/Quiz/EndingScene/QuizEndingImageSwitcher.cs) |
+| 힌트 및 결과 별 표시 | [HintUI.cs](source/unity/SignPlay/Assets/scripts/Quiz/Hint/HintUI.cs), [StarsAppear.cs](source/unity/SignPlay/Assets/scripts/Quiz/EndingScene/StarsAppear.cs) |
 
+본인 담당을 자세히 보려면 [기여 및 코드 안내](docs/CONTRIBUTIONS.md)를, 전체 프로젝트 구성은 [개발 구조와 실행 안내](docs/DEVELOPMENT.md)를 참고하세요.
 
+## 저장소 둘러보기
 
-"수어를 게임처럼 쉽고 재미있게!"
+| 위치 | 성격 |
+| --- | --- |
+| [source/unity/SignPlay](source/unity/SignPlay) | 팀 게임의 Unity 개발 원본. 퀴즈 외 맵·스토리·상점 코드도 포함 |
+| [source/python](source/python) | 로컬에 보관되어 있던 인식 연동 코드와 팀 제공 모델 2개 |
+| [docs/project-materials](docs/project-materials) | 퀴즈 정리 PDF 및 스토리·기획 이미지 |
+| [study/unity-practice](study/unity-practice) | 별도 Unity 연습 프로젝트 3개. 완성 게임과 구분 |
+| [study/textbook-reference](study/textbook-reference) | 교재 예제 원본 기반 학습 스냅샷. 개인 창작물로 주장하지 않음 |
+| 루트의 `SignPlay.exe`, `SignPlay_Data`, `MonoBleedingEdge` 등 | 기존 Windows 배포본. 이번 원본 정리에서 재빌드하지 않음 |
 
-Unity와 Google MediaPipe를 활용하여 사용자의 손동작을 실시간으로 인식하는 
+## 확인 범위
 
-인터랙티브 수어 학습 게임입니다.
+2026-10-26에 로컬 `Untoc` 폴더의 보존 대상 파일을 정리했습니다. 이 날짜는 **아카이브 정리일**이며 개발일·개별 작성 이력을 증명하는 날짜가 아닙니다. 원본의 코드·모델·에셋 바이트는 수정하지 않았습니다. 로컬 스냅샷과 기존 배포본이 같은 시점의 최종 버전이라는 보장은 없습니다.
 
+- [보존 파일 목록 및 SHA-256](docs/ARCHIVE_MANIFEST.csv)
+- [출처·팀 기여·외부 에셋 안내](docs/ATTRIBUTION.md)
+- [제외 항목과 백업 범위](docs/ARCHIVE.md)
 
-
-
-
-\[1. 프로젝트 소개]
-
-SignPlay는 수어에 대한 진입 장벽을 낮추기 위해 기획된 기능성 게임 프로젝트입니다. 
-
-웹캠을 통해 내 손을 화면 속에서 직접 보며, 퀴즈를 풀고 스토리를 진행하는 과정에서 
-
-자연스럽게 지문자를 익힐 수 있습니다.
-
-
-
-\- 개발 팀: Team YOLO (부산대학교 정보컴퓨터공학부 \& 전기전자공학부)
-
-\- 주요 기술: Unity, Python, MediaPipe, Socket Communication
-
-
-
-
-
-\[2. 주요 기능]
-
-1\) 실시간 수어 인식
-
-&nbsp;  - 웹캠으로 입력된 손의 관절 포인트(21개)를 MediaPipe로 추출하여 알파벳을 실시간 판별합니다.
-
-
-
-2\) 이중 통신 구조
-
-&nbsp;  - Unity(게임 클라이언트)와 Python(AI 서버) 간의 TCP/UDP 소켓 통신을 통해 안정적인 인식 환경을 구축했습니다.
-
-
-
-3\) 스토리 \& 맵 시스템
-
-&nbsp;  - '숲'과 '바다' 테마로 구성된 맵을 탐험하며 단계별로 퀴즈를 해결합니다.
-
-
-
-4\) 상점 \& 커스터마이징
-
-&nbsp;  - 퀴즈 보상(코인)으로 캐릭터 스킨과 UI 테마를 구매하여 게임을 꾸밀 수 있습니다.
-
-
-
-5\) 편의성 (No Python Required)
-
-&nbsp;  - PyInstaller를 통해 Python 환경이 없는 사용자도 별도 설치 없이 실행 가능하도록 패키징했습니다.
-
-
-
-
-
-\[3. 기술 스택]
-
-\- Game Engine: Unity (C#)
-
-\- AI \& Vision: Python, Google MediaPipe, Scikit-learn (Joblib)
-
-\- Network: Socket Programming (TCP/UDP)
-
-\- DevOps: Unity DevOps, Unity Cloud
-
-\- Design: Aseprite (Pixel Art Assets)
-
-
-
-
-
-\[4. 시스템 아키텍처]
-
-저희 프로젝트는 Unity와 Python이 동시에 실행되며 데이터를 주고받는 구조입니다.
-
-
-
-(1) Unity (Client): 
-
-&nbsp;   웹캠 영상을 캡처하여 TCP 통신으로 Python 서버에 전송합니다.
-
-(2) Python (Server): 
-
-&nbsp;   전송받은 이미지에서 MediaPipe로 손 좌표를 추출하고, 학습된 모델로 알파벳을 분류합니다.
-
-(3) Unity (Client): 
-
-&nbsp;   분류된 결과값을 UDP 통신으로 받아 퀴즈 정답 여부를 판단합니다.
-
-
-
-\* 초기에는 YOLO 객체 인식을 고려했으나, 손가락의 미세한 관절 움직임을 
-
-&nbsp; 정확히 파악하기 위해 MediaPipe와 좌표 기반 분류기로 전환하였습니다.
-
-
-
-
-
-\[5. 설치 및 실행 방법]
-
-1\. 배포된 압축 파일을 다운로드하여 해제합니다.
-
-2\. 'SignPlay.exe'를 실행합니다.
-
-3\. \[주의] 게임 시작 시 AI 서버(Python)가 로딩되는 시간이 소요될 수 있습니다. 
-
-&nbsp;  로딩 화면이 끝날 때까지 잠시 기다려주세요.
-
-4\. 웹캠 사용 권한을 허용하면 플레이가 시작됩니다.
-
-
-
-
-
-\[6. 팀원 및 역할 (Team YOLO)]
-
-\- Design Team: UI/UX 디자인, 도트 에셋 및 캐릭터 제작
-
-\- Quiz Team: MediaPipe 손 인식 구현, 머신러닝 모델 학습, 소켓 통신 구현
-
-\- Game Team: 유니티 게임 로직, 맵/상점/스토리 시스템 구현, 협업 환경 구축
-
-
-
-
-
-\[7. 회고 및 향후 계획]
-
-\- MediaPipe 도입: 
-
-&nbsp; 손가락의 디테일한 모양 변화를 감지하기 위해 Bounding Box 방식(YOLO) 대신 
-
-&nbsp; 관절 포인트 추적 방식(MediaPipe)을 채택하여 인식률을 높였습니다.
-
-
-
-\- 동적 인식의 과제:  
-
-&nbsp; 현재 버전은 정적인 지문자 인식에 최적화되어 있습니다. 추후 시계열 데이터 학습을 통해 
-
-&nbsp; 동적인 수어 동작까지 인식할 수 있도록 발전시킬 계획입니다.
-
-
-
-
-
-================================================================
-
-Copyright 2026. Team YOLO. All rights reserved.
-
-================================================================
-
+실행하려면 Git LFS를 포함해 저장소를 내려받은 뒤 Windows에서 기존 `SignPlay.exe`를 실행합니다. 개발 원본은 Unity Hub에서 `source/unity/SignPlay`를 열면 됩니다. 웹캠과 Unity/Python 실제 연동 실행은 이번 아카이브 작업에서 검증하지 않았습니다.
